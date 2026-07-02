@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrthoNow — Book a Consultation | Orthopaedic Care Across Bengaluru, Hyderabad & Chennai</title>
+
+<!-- ============================================================
+     GOOGLE TAG MANAGER — HEAD SNIPPET
+     Replace GTM-XXXXXXX with the real container ID once created
+     in the Namoza GTM account.
+     ============================================================ -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+<!-- End GTM head snippet -->
+
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-panel:#ffffff;
+    --ink:#000000;
+    --ink-dim:#333333;
+    --line:#cccccc;
+    --accent:#000000;
+    --accent-dim:#666666;
+    --ok:#000000;
+    --serif:Georgia,serif;
+    --sans:Arial,sans-serif;
+    --mono:monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+    padding:18px 6vw;background:#ffffff;border-bottom:1px solid var(--line);
+  }
+  .logo{font-family:var(--serif);font-size:1.3rem;}
+  .logo span{color:var(--accent);}
+  nav a{margin-left:28px;font-size:.85rem;color:var(--ink-dim);}
+  nav a:hover{color:var(--ink);}
+
+  .call-pill{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid #000000;color:#000000;
+    padding:8px 16px;border-radius:4px;font-size:.82rem;font-weight:600;
+  }
+  .call-pill:hover{background:#000000;color:#ffffff;}
+
+  .hero{padding:90px 6vw 70px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.08;margin-bottom:22px;}
+  .hero p.lede{color:var(--ink-dim);font-size:1.05rem;max-width:46ch;margin-bottom:32px;}
+  .hero-stats{display:flex;gap:32px;margin-top:40px;}
+  .hero-stats div{border-left:2px solid var(--accent-dim);padding-left:14px;}
+  .hero-stats b{display:block;font-family:var(--serif);font-size:1.6rem;}
+  .hero-stats span{font-size:.78rem;color:var(--ink-dim);}
+
+  .btn-primary{display:inline-block;background:#000000;color:#ffffff;font-weight:700;padding:15px 30px;border-radius:4px;border:none;cursor:pointer;font-size:.95rem;}
+  .btn-primary:hover{background:#333333;}
+
+  .hero-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:8px;padding:28px;align-self:start;}
+  .hero-card h3{font-family:var(--serif);font-size:1.1rem;margin-bottom:6px;}
+  .hero-card p{color:var(--ink-dim);font-size:.85rem;margin-bottom:18px;}
+
+  .section{padding:70px 6vw;border-bottom:1px solid var(--line);}
+  .section h2{font-family:var(--serif);font-size:1.9rem;margin-bottom:8px;}
+  .section .sub{color:var(--ink-dim);font-size:.92rem;margin-bottom:40px;max-width:60ch;}
+
+  .clinic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .clinic-card{background:var(--bg-panel);border:1px solid var(--line);padding:22px;border-radius:6px;cursor:pointer;transition:border-color .15s;}
+  .clinic-card:hover{border-color:var(--accent-dim);}
+  .clinic-card .city{font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;}
+  .clinic-card h4{font-family:var(--serif);font-size:1.15rem;margin:8px 0 10px;}
+  .clinic-card .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .clinic-card .call-mini{font-size:.8rem;color:var(--accent);font-weight:600;}
+
+  .booking-wrap{background:var(--bg-panel);border:1px solid var(--line);border-radius:8px;max-width:640px;margin:0 auto;overflow:hidden;}
+  .booking-steps{display:flex;border-bottom:1px solid var(--line);}
+  .booking-steps div{flex:1;text-align:center;padding:16px 8px;font-size:.75rem;font-family:var(--mono);color:var(--ink-dim);border-bottom:2px solid transparent;}
+  .booking-steps div.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .booking-steps div.done{color:var(--ok);}
+
+  .step-panel{padding:36px;display:none;}
+  .step-panel.active{display:block;}
+  .step-panel h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:6px;}
+  .step-panel .hint{color:var(--ink-dim);font-size:.85rem;margin-bottom:24px;}
+
+  label{display:block;font-size:.78rem;color:var(--ink-dim);margin:16px 0 6px;}
+  select,input{width:100%;background:#ffffff;border:1px solid var(--line);color:var(--ink);padding:12px 14px;border-radius:4px;font-size:.9rem;font-family:var(--sans);}
+  select:focus,input:focus{outline:none;border-color:#000000;}
+
+  .step-actions{display:flex;justify-content:space-between;margin-top:30px;}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--ink-dim);padding:12px 22px;border-radius:4px;cursor:pointer;font-size:.85rem;}
+  .btn-next{background:#000000;color:#ffffff;border:none;font-weight:700;padding:12px 26px;border-radius:4px;cursor:pointer;font-size:.9rem;}
+  .confirm-box{background:#ffffff;border:1px solid #000000;border-radius:6px;padding:20px;margin-top:10px;}
+  .confirm-box b{color:var(--ok);}
+
+  .guide-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .guide-form{background:var(--bg-panel);border:1px solid var(--line);border-radius:8px;padding:30px;}
+
+  .blog-post{max-width:70ch;margin:0 auto;}
+  .blog-post h2{font-family:var(--serif);font-size:1.7rem;margin-bottom:14px;}
+  .blog-post p{color:var(--ink-dim);margin-bottom:18px;font-size:.95rem;}
+
+  .wa-widget{position:fixed;bottom:24px;right:24px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.4);cursor:pointer;}
+  .wa-widget svg{width:28px;height:28px;fill:#ffffff;}
+
+  footer{padding:30px 6vw;text-align:center;color:var(--ink-dim);font-size:.8rem;}
+
+  .dl-console{position:fixed;bottom:0;left:0;right:0;max-height:34vh;overflow-y:auto;background:#ffffff;border-top:1px solid #000000;font-family:var(--mono);font-size:.72rem;color:#000000;padding:10px 16px;z-index:70;display:none;}
+  .dl-console.open{display:block;}
+  .dl-toggle{position:fixed;bottom:10px;left:16px;z-index:71;background:#ffffff;border:1px solid #000000;color:#000000;padding:6px 12px;border-radius:4px;font-size:.7rem;cursor:pointer;font-family:var(--mono);}
+  .dl-console pre{white-space:pre-wrap;margin-bottom:6px;border-bottom:1px dashed #cccccc;padding-bottom:6px;}
+
+  @media(max-width:860px){.hero{grid-template-columns:1fr;} .clinic-grid{grid-template-columns:1fr 1fr;} .guide-box{grid-template-columns:1fr;}}
+  @media(max-width:560px){.clinic-grid{grid-template-columns:1fr;} nav{display:none;}}
+</style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header>
+  <div class="logo">Ortho<span>Now</span></div>
+  <nav>
+    <a href="#clinics">Clinics</a>
+    <a href="#book">Book Consultation</a>
+    <a href="#guide">Patient Guide</a>
+    <a href="#blog">Blog</a>
+  </nav>
+  <!-- CALL NOW: header. tel: link -> Click trigger fires call_click -->
+  <a class="call-pill" href="tel:+918041234567" data-clinic="header" data-page-section="header">● Call Now</a>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">9 clinics · Bengaluru · Hyderabad · Chennai</div>
+    <h1>Orthopaedic care that gets you moving again — booked in under two minutes.</h1>
+    <p class="lede">Same-week consultations with specialists in joint pain, sports injury, and post-surgical recovery. No referral needed.</p>
+    <a href="#book" class="btn-primary">Book a Consultation</a>
+    <div class="hero-stats">
+      <div><b>9</b><span>Clinics across 3 cities</span></div>
+      <div><b>40+</b><span>Orthopaedic specialists</span></div>
+      <div><b>15 min</b><span>Avg. wait time</span></div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <h3>Prefer to talk first?</h3>
+    <p>Our care coordinators can help you pick the right specialist and clinic.</p>
+    <a class="call-pill" href="tel:+918041234567" data-clinic="hero_card" data-page-section="hero">● Call Now</a>
+  </div>
+</section>
+
+<section class="section" id="clinics">
+  <h2>Our Clinics</h2>
+  <p class="sub">Each location page tracks its own view count, so the team knows which clinics need a local visibility push.</p>
+  <div class="clinic-grid" id="clinicGrid"></div>
+</section>
+
+<section class="section" id="book">
+  <h2>Book a Consultation</h2>
+  <p class="sub">Three quick steps. We'll confirm your slot by SMS.</p>
+  <div class="booking-wrap">
+    <div class="booking-steps">
+      <div id="tab1" class="active">01 · Clinic & Specialty</div>
+      <div id="tab2">02 · Your Details</div>
+      <div id="tab3">03 · Confirm</div>
+    </div>
+
+    <div class="step-panel active" id="panel1">
+      <h3>Where would you like to be seen?</h3>
+      <p class="hint">Pick a clinic and the specialty you need.</p>
+      <label for="bClinic">Clinic</label>
+      <select id="bClinic"></select>
+      <label for="bSpecialty">Specialty</label>
+      <select id="bSpecialty">
+        <option>Joint Replacement</option>
+        <option>Sports Injury</option>
+        <option>Spine Care</option>
+        <option>Paediatric Orthopaedics</option>
+        <option>Post-Surgical Rehab</option>
+      </select>
+      <div class="step-actions"><span></span><button class="btn-next" onclick="goToStep(2)">Next →</button></div>
+    </div>
+
+    <div class="step-panel" id="panel2">
+      <h3>Your details</h3>
+      <p class="hint">We'll use this to confirm your appointment. Your details go directly to our patient system — never to analytics.</p>
+      <label for="bName">Full name</label>
+      <input id="bName" type="text" placeholder="Your name">
+      <label for="bPhone">Phone number</label>
+      <input id="bPhone" type="tel" placeholder="+91 98XXXXXXXX">
+      <label for="bDate">Preferred date</label>
+      <input id="bDate" type="date">
+      <div class="step-actions">
+        <button class="btn-ghost" onclick="goToStep(1)">← Back</button>
+        <button class="btn-next" onclick="goToStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel3">
+      <h3>Confirm your booking</h3>
+      <p class="hint">Review the details below before confirming.</p>
+      <div class="confirm-box" id="confirmSummary"></div>
+      <div class="step-actions">
+        <button class="btn-ghost" onclick="goToStep(2)">← Back</button>
+        <button class="btn-next" onclick="confirmBooking()">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guide">
+  <div class="guide-box">
+    <div>
+      <h2>Free Patient Guide</h2>
+      <p class="sub">Download our 12-page guide: "Understanding Joint Pain — When to See a Specialist." Written by our lead orthopaedic surgeons.</p>
+    </div>
+    <div class="guide-form">
+      <form id="guideForm" onsubmit="handleGuideSubmit(event)">
+        <label for="gName">Name</label>
+        <input id="gName" type="text" required placeholder="Your name">
+        <label for="gPhone">Phone number</label>
+        <input id="gPhone" type="tel" required placeholder="+91 98XXXXXXXX">
+        <div class="step-actions" style="justify-content:flex-end;">
+          <button class="btn-next" type="submit">Get the Guide (PDF)</button>
+        </div>
+      </form>
+      <a id="guideDownloadLink" href="#" style="display:none;" data-file-name="orthonow-patient-guide.pdf">Download ready →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="blog">
+  <div class="blog-post" id="blogPost" data-article-title="5 Signs Your Knee Pain Needs a Specialist" data-article-slug="knee-pain-signs">
+    <h2>5 Signs Your Knee Pain Needs a Specialist</h2>
+    <p>Occasional knee soreness after a long walk is normal. But persistent swelling, a locking sensation, or pain that wakes you at night are signals worth taking seriously.</p>
+    <p>Placeholder editorial content continues here — in production this would be the real article body, long enough to generate genuine scroll depth for the tracking demo below.</p>
+    <p>Repeat paragraph block for scroll length. Repeat paragraph block for scroll length. Repeat paragraph block for scroll length.</p>
+    <p>Repeat paragraph block for scroll length. Repeat paragraph block for scroll length. Repeat paragraph block for scroll length.</p>
+    <p>Repeat paragraph block for scroll length. Repeat paragraph block for scroll length. Repeat paragraph block for scroll length.</p>
+    <p>If you're experiencing any of these signs, book a consultation with one of our specialists — same-week slots are usually available.</p>
+    <p style="height:400px;">— end of article marker (scroll target for 90% threshold) —</p>
+  </div>
+</section>
+
+<footer>OrthoNow — 9 clinics across Bengaluru, Hyderabad & Chennai. Task-submission demo build for Namoza.</footer>
+
+<a class="wa-widget" id="waWidget" href="https://wa.me/918041234567?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.2c-.3.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.3.7.9 2.2 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.3.5 1.1 1.6 2.3 2.6 1.6 1.3 2.2 1.4 2.5 1.4.3 0 .5 0 .7-.3.2-.3.9-1 1.1-1.4.2-.4.4-.3.7-.2.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.2.1.9-.2 1.6z"/></svg>
+</a>
+
+<button class="dl-toggle" onclick="document.getElementById('dlConsole').classList.toggle('open')">dataLayer log ▲</button>
+<div class="dl-console" id="dlConsole"></div>
+
+<script>
+/* =====================================================================
+   GTM DATALAYER IMPLEMENTATION
+   -----------------------------------------------------------------
+   Every push below fires from application JS at the exact moment a
+   real user action completes. GTM listens for these via Custom Event
+   triggers (event === '...') and forwards them to GA4 tags.
+
+   Convention: event names are snake_case. No PII (name/phone/email)
+   ever enters the dataLayer — only booleans/flags confirming an
+   action happened. Real patient data goes straight to the backend/
+   CRM via the form's normal submit handler (out of scope here).
+   ===================================================================== */
+
+window.dataLayer = window.dataLayer || [];
+
+// Pushes to dataLayer AND mirrors to the on-page console so the Loom
+// recording can show events firing live without opening devtools.
+function pushEvent(payload) {
+  window.dataLayer.push(payload);
+  const el = document.createElement('pre');
+  el.textContent = JSON.stringify(payload, null, 2);
+  const consoleBox = document.getElementById('dlConsole');
+  consoleBox.prepend(el);
+  consoleBox.classList.add('open');
+  console.log('[dataLayer push]', payload);
+}
+
+/* ---------------------------------------------------------------
+   1. CLINIC DATA — stands in for the 9 real clinic pages. In
+   production each is its own URL (/clinics/whitefield etc.) and
+   clinic_page_view fires from GTM's native Page View trigger
+   reading {{Page Path}} — zero custom JS needed there.
+   --------------------------------------------------------------- */
+const CLINICS = [
+  {name:"Whitefield",   city:"Bengaluru", phone:"+918041234501"},
+  {name:"Koramangala",  city:"Bengaluru", phone:"+918041234502"},
+  {name:"Indiranagar",  city:"Bengaluru", phone:"+918041234503"},
+  {name:"Banjara Hills",city:"Hyderabad", phone:"+914041234504"},
+  {name:"Gachibowli",   city:"Hyderabad", phone:"+914041234505"},
+  {name:"Kukatpally",   city:"Hyderabad", phone:"+914041234506"},
+  {name:"T. Nagar",     city:"Chennai",   phone:"+914441234507"},
+  {name:"Adyar",        city:"Chennai",   phone:"+914441234508"},
+  {name:"Velachery",    city:"Chennai",   phone:"+914441234509"},
+];
+
+function renderClinics(){
+  const grid = document.getElementById('clinicGrid');
+  const select = document.getElementById('bClinic');
+  CLINICS.forEach((c)=>{
+    const card = document.createElement('div');
+    card.className = 'clinic-card';
+    card.innerHTML = `
+      <div class="city">${c.city}</div>
+      <h4>${c.name}</h4>
+      <div class="row">
+        <span style="font-size:.8rem;color:var(--ink-dim)">Open today · 9am–7pm</span>
+        <a class="call-mini" href="tel:${c.phone}" data-clinic="${c.name}" data-page-section="clinic_card">Call →</a>
+      </div>`;
+    // simulated clinic_page_view (production: native Page View trigger, no JS)
+    card.addEventListener('click', (e)=>{
+      if(e.target.closest('a')) return;
+      pushEvent({event:'clinic_page_view', page_path:`/clinics/${c.name.toLowerCase().replace(/\s+/g,'-')}`, city:c.city, clinic_name:c.name});
+    });
+    grid.appendChild(card);
+
+    const opt = document.createElement('option');
+    opt.value = c.name; opt.textContent = `${c.name} (${c.city})`;
+    select.appendChild(opt);
+  });
+}
+renderClinics();
+
+/* ---------------------------------------------------------------
+   2. CALL NOW — event delegation on any tel: link, site-wide.
+   In real GTM this needs NO custom dataLayer push — GTM's built-in
+   "Click – Just Links" trigger filtered on Click URL contains
+   "tel:" handles it natively via {{Click URL}}/{{Page Path}}.
+   Reproduced manually here only because this demo has no live GTM
+   container attached.
+   --------------------------------------------------------------- */
+document.addEventListener('click', (e)=>{
+  const link = e.target.closest('a[href^="tel:"]');
+  if(!link) return;
+  pushEvent({
+    event:'call_click',
+    page_location: window.location.pathname + (link.dataset.pageSection ? '#'+link.dataset.pageSection : ''),
+    click_url: link.getAttribute('href'),
+    clinic_name: link.dataset.clinic || 'unspecified'
+  });
+});
+
+/* ---------------------------------------------------------------
+   3. WHATSAPP WIDGET — GTM's Click trigger (href contains "wa.me")
+   handles this natively too. Logged here for demo parity.
+   --------------------------------------------------------------- */
+document.getElementById('waWidget').addEventListener('click', ()=>{
+  const scrolled = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100) || 0;
+  pushEvent({event:'whatsapp_click', page_location:window.location.pathname, percent_scrolled:scrolled, page_type:'landing_page'});
+});
+
+/* ---------------------------------------------------------------
+   4. PATIENT GUIDE — form submit (real Form Submission trigger in
+   GTM) + a separate download click. No PII pushed — only a success
+   flag. Name/phone would be posted to the backend by this same
+   handler in production (omitted here — out of scope).
+   --------------------------------------------------------------- */
+function handleGuideSubmit(e){
+  e.preventDefault();
+  const name = document.getElementById('gName').value.trim();
+  const phone = document.getElementById('gPhone').value.trim();
+  pushEvent({event:'guide_form_submit', form_id:'patient_guide_form', lead_type:'guide_download', form_success: !!(name && phone)});
+  document.getElementById('guideDownloadLink').style.display = 'inline-block';
+  document.getElementById('guideForm').style.display = 'none';
+}
+document.getElementById('guideDownloadLink').addEventListener('click', (e)=>{
+  pushEvent({event:'guide_pdf_download', file_name:e.currentTarget.dataset.fileName, link_url:'/assets/orthonow-patient-guide.pdf', page_location:window.location.pathname});
+});
+
+/* ---------------------------------------------------------------
+   5. BLOG SCROLL DEPTH — mirrors GTM's built-in Scroll Depth
+   trigger (25/50/75/90%). In production this needs zero custom
+   code; reproduced manually here only because this demo runs
+   outside a real GTM container.
+   --------------------------------------------------------------- */
+(function(){
+  const thresholds = [25,50,75,90];
+  const fired = new Set();
+  const post = document.getElementById('blogPost');
+  window.addEventListener('scroll', ()=>{
+    const rect = post.getBoundingClientRect();
+    const postTop = rect.top + window.scrollY;
+    const postHeight = rect.height;
+    const viewed = Math.min(Math.max(window.scrollY + window.innerHeight - postTop, 0), postHeight);
+    const pct = Math.round((viewed / postHeight) * 100);
+    thresholds.forEach(t=>{
+      if(pct >= t && !fired.has(t)){
+        fired.add(t);
+        pushEvent({event:'blog_scroll', scroll_depth_threshold:t, article_title:post.dataset.articleTitle, page_path:`/blog/${post.dataset.articleSlug}`});
+      }
+    });
+  });
+})();
+
+/* ---------------------------------------------------------------
+   6. BOOKING FUNNEL — the core of this task.
+   -----------------------------------------------------------------
+   Why manual JS is required at all: the 3 steps below are rendered
+   by toggling .active on <div class="step-panel"> elements — no
+   page navigation, no native <form> submission between steps. GTM's
+   built-in triggers (Page View, Click, Form Submission) have no
+   browser-level event to listen to here, because nothing observable
+   happens at the DOM/navigation level when a step changes. The ONLY
+   way GTM can know a step completed is if this front-end code
+   explicitly tells it, via dataLayer.push(), at the exact moment
+   each step's "Next"/"Confirm" action fires.
+
+   GTM side (configured in the GTM UI, not shown here):
+     - One Custom Event trigger: event equals "booking_step_complete"
+     - Three GA4 event tags, each filtered by step_number (1, 2, 3),
+       all firing the same GA4 event name so they form a single
+       GA4 Funnel Exploration:
+         Step 1: booking_step_complete WHERE step_number = 1
+         Step 2: booking_step_complete WHERE step_number = 2
+         Step 3: booking_step_complete WHERE step_number = 3
+       GA4 then shows % drop-off between each step automatically.
+
+   Google Ads conversion import: step_number = 3 (booking_confirmed)
+   is the one event imported as a Google Ads conversion action — not
+   step 1 or the guide download — because Ads' bidding algorithm
+   optimizes spend toward whatever is marked a conversion, and we
+   want it optimizing toward completed bookings (real revenue
+   signal), not low-intent actions like starting the form.
+   --------------------------------------------------------------- */
+function goToStep(n){
+  if(n === 2){
+    pushEvent({
+      event:'booking_step_complete',
+      step_number:1,
+      step_name:'location_specialty_selected',
+      clinic_location: document.getElementById('bClinic').value,
+      specialty: document.getElementById('bSpecialty').value
+    });
+  }
+  if(n === 3){
+    const name = document.getElementById('bName').value.trim();
+    const phone = document.getElementById('bPhone').value.trim();
+    const date = document.getElementById('bDate').value;
+    pushEvent({
+      event:'booking_step_complete',
+      step_number:2,
+      step_name:'contact_details_entered',
+      preferred_date_selected: !!date,
+      contact_info_provided: !!(name && phone)
+    });
+    document.getElementById('confirmSummary').innerHTML = `
+      <p><b>Clinic:</b> ${document.getElementById('bClinic').value}</p>
+      <p><b>Specialty:</b> ${document.getElementById('bSpecialty').value}</p>
+      <p><b>Preferred date:</b> ${date || 'Not set'}</p>`;
+  }
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel'+n).classList.add('active');
+  document.querySelectorAll('.booking-steps > div').forEach((tab,i)=>{
+    tab.classList.remove('active','done');
+    if(i+1 < n) tab.classList.add('done');
+    if(i+1 === n) tab.classList.add('active');
+  });
+}
+
+function confirmBooking(){
+  const bookingId = 'ON-' + Math.random().toString(36).slice(2,9).toUpperCase();
+  pushEvent({
+    event:'booking_step_complete',
+    step_number:3,
+    step_name:'booking_confirmed',
+    clinic_location: document.getElementById('bClinic').value,
+    specialty: document.getElementById('bSpecialty').value,
+    booking_id: bookingId
+  });
+  document.querySelector('.booking-wrap').innerHTML = `
+    <div style="padding:50px;text-align:center;">
+      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:10px;">Booking confirmed ✓</h3>
+      <p style="color:var(--ink-dim);">Reference ${bookingId}. We'll send an SMS confirmation shortly.</p>
+    </div>`;
+}
+</script>
+</body>
+</html>
